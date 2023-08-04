@@ -1,11 +1,10 @@
 import 'package:inner_drawer/inner_drawer.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/gestures.dart';
 
 void main() {
   runApp(MaterialApp(
-    theme: ThemeData(useMaterial3: true),
-    home: MyApp(),
+    theme: ThemeData.dark(useMaterial3: true),
+    home: const MyApp(),
   ));
 }
 
@@ -13,7 +12,7 @@ class MyApp extends StatefulWidget {
   const MyApp({super.key});
 
   @override
-  _MyAppState createState() => _MyAppState();
+  State<MyApp> createState() => _MyAppState();
 }
 
 class _MyAppState extends State<MyApp> {
@@ -32,15 +31,22 @@ class _MyAppState extends State<MyApp> {
         ),
         // drawerWidth: 250,
         innerDrawerController: innerDrawerController,
-        child: Center(
-            child: TextButton(
-          onPressed: () {
-            print('pressed');
-
-            innerDrawerController.animateToOpen();
-          },
-          child: Text('Open Drawer'),
-        )),
+        child: SizedBox(
+          height: MediaQuery.of(context).size.height,
+          child: Center(
+              child: TextButton(
+            style: ButtonStyle(
+              backgroundColor: MaterialStateProperty.all(Colors.blue),
+            ),
+            onPressed: () {
+              innerDrawerController.animateToOpen();
+            },
+            child: const Text(
+              'Open Drawer',
+              style: TextStyle(color: Colors.white),
+            ),
+          )),
+        ),
       ),
     );
   }
@@ -53,7 +59,7 @@ class CustomDrawer extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      color: Colors.blue, // can be any color
+      color: const Color.fromARGB(255, 66, 66, 66), // can be any color
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: <Widget>[
@@ -61,7 +67,7 @@ class CustomDrawer extends StatelessWidget {
             onPressed: () {
               controller.animateToClose();
             },
-            child: Text('This is a custom drawer'),
+            child: const Text('Close'),
           ),
         ],
       ),
