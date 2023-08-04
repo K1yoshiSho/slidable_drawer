@@ -32,7 +32,15 @@ class _MyAppState extends State<MyApp> {
         ),
         // drawerWidth: 250,
         innerDrawerController: innerDrawerController,
-        child: Center(child: Text("wdwd")),
+        child: Center(
+            child: TextButton(
+          onPressed: () {
+            print('pressed');
+
+            innerDrawerController.animateToOpen();
+          },
+          child: Text('Open Drawer'),
+        )),
       ),
     );
   }

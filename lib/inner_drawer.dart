@@ -64,6 +64,7 @@ class _InnerDrawerState extends State<InnerDrawer> with SingleTickerProviderStat
 
   @override
   Widget build(BuildContext context) {
+    print(_drawerValue);
     return GestureDetector(
       onTapUp: (details) {
         if (_drawerValue == 0 && !_isInDrawerBody(details.localPosition)) {
@@ -96,14 +97,21 @@ class _InnerDrawerState extends State<InnerDrawer> with SingleTickerProviderStat
           // Main content
           widget.child,
           // Custom drawer
-          Container(
-            color: Colors.black.withOpacity(_opacityValue < 0.3 ? _opacityValue : 0.3),
+          Visibility(
+            visible: _drawerValue != -_initialWidth,
+            child: Container(
+              color: Colors.black.withOpacity(_opacityValue < 0.3 ? _opacityValue : 0.3),
+            ),
           ),
-          Transform.translate(
-            offset: Offset(_drawerValue, 0.0),
-            child: SizedBox(
-              width: widget.drawerWidth ?? MediaQuery.sizeOf(context).width * 0.75,
-              child: widget.drawerBody,
+
+          Visibility(
+            visible: _drawerValue != -_initialWidth,
+            child: Transform.translate(
+              offset: Offset(_drawerValue, 0.0),
+              child: SizedBox(
+                width: widget.drawerWidth ?? MediaQuery.sizeOf(context).width * 0.75,
+                child: widget.drawerBody,
+              ),
             ),
           ),
         ],
@@ -118,6 +126,19 @@ class _InnerDrawerState extends State<InnerDrawer> with SingleTickerProviderStat
     return tapPosition.dx >= drawerBodyLeft && tapPosition.dx <= drawerBodyRight;
   }
 
+  // void _openDrawer() {
+  //   print('open');
+  //   _animation = Tween<double>(begin: _drawerValue, end: _initialWidth).animate(_controller)
+  //     ..addListener(() {
+  //       setState(() {
+  //         _drawerValue = _animation.value;
+  //         _opacityValue = (_drawerValue + _initialWidth) / _initialWidth;
+  //       });
+  //     });
+  //   _controller.value = 1; // set controller value to 0 before starting the animation
+  //   _controller.forward();
+  // }
+
   void _animateToOpen() {
     _animation = Tween<double>(begin: _drawerValue, end: 0.0).animate(_controller)
       ..addListener(() {
@@ -131,6 +152,7 @@ class _InnerDrawerState extends State<InnerDrawer> with SingleTickerProviderStat
   }
 
   void _animateToClose() {
+    print('close');
     _animation = Tween<double>(begin: _drawerValue, end: -_initialWidth).animate(_controller)
       ..addListener(() {
         setState(() {
