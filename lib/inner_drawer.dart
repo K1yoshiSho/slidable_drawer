@@ -65,7 +65,7 @@ class _InnerDrawerState extends State<InnerDrawer> with SingleTickerProviderStat
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTapDown: (details) {
+      onTapUp: (details) {
         if (_drawerValue == 0 && !_isInDrawerBody(details.localPosition)) {
           _animateToClose();
         }
@@ -79,13 +79,12 @@ class _InnerDrawerState extends State<InnerDrawer> with SingleTickerProviderStat
         });
       },
       onHorizontalDragEnd: (details) {
-        final velocity = _velocityTracker.getVelocity().pixelsPerSecond.dx;
         _velocityTracker = VelocityTracker.withKind(PointerDeviceKind.touch); // reset tracker
 
         if (details.velocity.pixelsPerSecond.dx < -1500 && (_drawerValue < 0)) {
           _animateToClose();
         } else {
-          if (velocity > 500 || _drawerValue > -(_initialWidth / 2)) {
+          if (details.velocity.pixelsPerSecond.dx > 1500 || _drawerValue > -(_initialWidth / 2)) {
             _animateToOpen();
           } else {
             _animateToClose();
