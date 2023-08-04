@@ -1,51 +1,62 @@
-// import 'package:inner_drawer/inner_drawer.dart';
-// import 'package:flutter/material.dart';
-// import 'package:flutter/gestures.dart';
+import 'package:inner_drawer/inner_drawer.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter/gestures.dart';
 
-// void main() {
-//   runApp(MaterialApp(
-//     theme: ThemeData(useMaterial3: true),
-//     home: MyApp(),
-//   ));
-// }
+void main() {
+  runApp(MaterialApp(
+    theme: ThemeData(useMaterial3: true),
+    home: MyApp(),
+  ));
+}
 
-// class MyApp extends StatefulWidget {
-//   @override
-//   _MyAppState createState() => _MyAppState();
-// }
+class MyApp extends StatefulWidget {
+  const MyApp({super.key});
 
-// class _MyAppState extends State<MyApp> {
-//   @override
-//   void initState() {
-//     super.initState();
-//   }
+  @override
+  _MyAppState createState() => _MyAppState();
+}
 
-//   @override
-//   Widget build(BuildContext context) {
-//     return Scaffold(
-//       body: InnerDrawer(
-//         drawerBody: CustomDrawer(),
-//         // drawerWidth: 250,
-//         child: Center(child: Text("wdwd")),
-//       ),
-//     );
-//   }
-// }
+class _MyAppState extends State<MyApp> {
+  InnerDrawerController innerDrawerController = InnerDrawerController();
+  @override
+  void initState() {
+    super.initState();
+  }
 
-// class CustomDrawer extends StatelessWidget {
-//   @override
-//   Widget build(BuildContext context) {
-//     return Container(
-//       color: Colors.blue, // can be any color
-//       child: Column(
-//         mainAxisAlignment: MainAxisAlignment.center,
-//         children: <Widget>[
-//           Text(
-//             'This is a custom drawer',
-//             style: TextStyle(color: Colors.white, fontSize: 24),
-//           ),
-//         ],
-//       ),
-//     );
-//   }
-// }
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      body: InnerDrawer(
+        drawerBody: CustomDrawer(
+          controller: innerDrawerController,
+        ),
+        // drawerWidth: 250,
+        innerDrawerController: innerDrawerController,
+        child: Center(child: Text("wdwd")),
+      ),
+    );
+  }
+}
+
+class CustomDrawer extends StatelessWidget {
+  final InnerDrawerController controller;
+
+  const CustomDrawer({super.key, required this.controller});
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      color: Colors.blue, // can be any color
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: <Widget>[
+          TextButton(
+            onPressed: () {
+              controller.animateToClose();
+            },
+            child: Text('This is a custom drawer'),
+          ),
+        ],
+      ),
+    );
+  }
+}

@@ -1,15 +1,34 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 
+class InnerDrawerController {
+  late _InnerDrawerState _innerDrawerState;
+
+  // ignore: library_private_types_in_public_api
+  void attach(_InnerDrawerState innerDrawerState) {
+    _innerDrawerState = innerDrawerState;
+  }
+
+  void animateToOpen() {
+    _innerDrawerState._animateToOpen();
+  }
+
+  void animateToClose() {
+    _innerDrawerState._animateToClose();
+  }
+}
+
 class InnerDrawer extends StatefulWidget {
   final Widget child;
   final Widget drawerBody;
   final double? drawerWidth;
+  final InnerDrawerController? innerDrawerController;
   const InnerDrawer({
     super.key,
     required this.child,
     required this.drawerBody,
     this.drawerWidth,
+    this.innerDrawerController,
   });
 
   @override
@@ -31,6 +50,9 @@ class _InnerDrawerState extends State<InnerDrawer> with SingleTickerProviderStat
       vsync: this,
       duration: const Duration(milliseconds: 200),
     );
+    if (widget.innerDrawerController != null) {
+      widget.innerDrawerController!.attach(this);
+    }
   }
 
   @override
@@ -43,6 +65,11 @@ class _InnerDrawerState extends State<InnerDrawer> with SingleTickerProviderStat
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
+      onTapDown: (details) {
+        if (_drawerValue == 0 && !_isInDrawerBody(details.localPosition)) {
+          _animateToClose();
+        }
+      },
       onHorizontalDragUpdate: (details) {
         _velocityTracker.addPosition(details.sourceTimeStamp ?? const Duration(), details.globalPosition);
         setState(() {
@@ -54,10 +81,15 @@ class _InnerDrawerState extends State<InnerDrawer> with SingleTickerProviderStat
       onHorizontalDragEnd: (details) {
         final velocity = _velocityTracker.getVelocity().pixelsPerSecond.dx;
         _velocityTracker = VelocityTracker.withKind(PointerDeviceKind.touch); // reset tracker
-        if (velocity > 1000 || _drawerValue > -(_initialWidth / 2)) {
-          _animateToOpen();
-        } else {
+
+        if (details.velocity.pixelsPerSecond.dx < -1500 && (_drawerValue < 0)) {
           _animateToClose();
+        } else {
+          if (velocity > 500 || _drawerValue > -(_initialWidth / 2)) {
+            _animateToOpen();
+          } else {
+            _animateToClose();
+          }
         }
       },
       child: Stack(
@@ -78,6 +110,13 @@ class _InnerDrawerState extends State<InnerDrawer> with SingleTickerProviderStat
         ],
       ),
     );
+  }
+
+  bool _isInDrawerBody(Offset tapPosition) {
+    RenderBox renderBox = context.findRenderObject() as RenderBox;
+    double drawerBodyLeft = renderBox.localToGlobal(Offset.zero).dx + _drawerValue;
+    double drawerBodyRight = drawerBodyLeft + (widget.drawerWidth ?? MediaQuery.sizeOf(context).width * 0.75);
+    return tapPosition.dx >= drawerBodyLeft && tapPosition.dx <= drawerBodyRight;
   }
 
   void _animateToOpen() {
