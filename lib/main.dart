@@ -1,5 +1,5 @@
-import 'package:inner_drawer/inner_drawer.dart';
 import 'package:flutter/material.dart';
+import 'package:custom_inner_drawer/inner_drawer.dart';
 
 void main() {
   runApp(MaterialApp(

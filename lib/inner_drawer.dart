@@ -1,8 +1,6 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 
-part 'inner_controller.dart';
-
 class InnerDrawer extends StatefulWidget {
   final Widget child;
   final Widget drawerBody;
@@ -138,5 +136,22 @@ class _InnerDrawerState extends State<InnerDrawer> with SingleTickerProviderStat
       });
     _controller.reset();
     _controller.forward();
+  }
+}
+
+class InnerDrawerController {
+  late _InnerDrawerState _innerDrawerState;
+
+  // ignore: library_private_types_in_public_api
+  void attach(_InnerDrawerState innerDrawerState) {
+    _innerDrawerState = innerDrawerState;
+  }
+
+  void animateToOpen() {
+    _innerDrawerState._animateToOpen();
+  }
+
+  void animateToClose() {
+    _innerDrawerState._animateToClose();
   }
 }
