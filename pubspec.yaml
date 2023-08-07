@@ -1,7 +1,7 @@
 name: custom_inner_drawer
-description: custom inner drawer.
-homepage: https://github.com/K1yoshiSho/custom_inner_drawer.git
-version: 1.0.4+3
+description: This package was created to implement a Custom Drawer that could be opened with a simple swipe.
+homepage: https://github.com/K1yoshiSho/inner_drawer.git
+version: 1.0.5
 
 environment:
   sdk: '>=3.0.6 <4.0.0'
