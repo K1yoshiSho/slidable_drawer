@@ -1,12 +1,12 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 
-class InnerDrawer extends StatefulWidget {
+class SlidableDrawer extends StatefulWidget {
   final Widget child;
   final Widget drawerBody;
   final double? drawerWidth;
-  final InnerDrawerController? innerDrawerController;
-  const InnerDrawer({
+  final SlidableDrawerController? innerDrawerController;
+  const SlidableDrawer({
     super.key,
     required this.child,
     required this.drawerBody,
@@ -15,10 +15,10 @@ class InnerDrawer extends StatefulWidget {
   });
 
   @override
-  State<InnerDrawer> createState() => _InnerDrawerState();
+  State<SlidableDrawer> createState() => _SlidableDrawerState();
 }
 
-class _InnerDrawerState extends State<InnerDrawer> with SingleTickerProviderStateMixin {
+class _SlidableDrawerState extends State<SlidableDrawer> with SingleTickerProviderStateMixin {
   late double _drawerValue;
   late double _initialWidth;
   double _opacityValue = 0.0;
@@ -217,22 +217,22 @@ class _InnerDrawerState extends State<InnerDrawer> with SingleTickerProviderStat
   }
 }
 
-/// This class is used to control the InnerDrawer.
-class InnerDrawerController {
-  late _InnerDrawerState _innerDrawerState;
+/// This class is used to control the SlidableDrawer.
+class SlidableDrawerController {
+  late _SlidableDrawerState _innerDrawerState;
 
-  // This method is used to attach the _InnerDrawerState to the InnerDrawerController.
+  // This method is used to attach the _SlidableDrawerState to the SlidableDrawerController.
   // ignore: library_private_types_in_public_api
-  void attach(_InnerDrawerState innerDrawerState) {
+  void attach(_SlidableDrawerState innerDrawerState) {
     _innerDrawerState = innerDrawerState;
   }
 
-  // This method is used to animate the InnerDrawer to open.
+  // This method is used to animate the SlidableDrawer to open.
   void animateToOpen() {
     _innerDrawerState._animateToOpen();
   }
 
-  // This method is used to animate the InnerDrawer to close.
+  // This method is used to animate the SlidableDrawer to close.
   void animateToClose() {
     _innerDrawerState._animateToClose();
   }

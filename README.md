@@ -1,21 +1,21 @@
 <div align="center">
 <p align="center">
-    <a href="https://github.com/K1yoshiSho/rtf_textfield" align="center">
-        <img src="https://github.com/K1yoshiSho/rtf_textfield/blob/main/assets/images/rich_text_field.png?raw=true" width="400px">
+    <a href="https://github.com/K1yoshiSho/inner_drawer" align="center">
+        <img src="https://github.com/K1yoshiSho/inner_drawer/blob/main/assets/images/slidable_drawer.png?raw=true" width="400px">
     </a>
 </p>
 </div>
 
-<h2 align="center"> Flutter custom widget to create Rich TextField 🚀 </h2>
+<h2 align="center"> This package was created to implement a Custom Drawer that could be opened with a simple swipe. 🚀 </h2>
 
 <p align="center">
-Included RTFTextFieldController for customize text, hint and label TextSpan 😊
+Included SlidableDrawerController for animated open/close drawer 😊
    <br>
-   <span style="font-size: 0.9em"> Show some ❤️ and <a href="https://github.com/K1yoshiSho/rtf_textfield.git">star the repo</a> to support the project! </span>
+   <span style="font-size: 0.9em"> Show some ❤️ and <a href="https://github.com/K1yoshiSho/inner_drawer.git">star the repo</a> to support the project! </span>
 </p>
 
 <p align="center">
-  <a href="https://pub.dev/packages/rtf_textfield"><img src="https://img.shields.io/pub/v/rtf_textfield.svg" alt="Pub"></a>
+  <a href="https://pub.dev/packages/inner_drawer"><img src="https://img.shields.io/pub/v/rtf_textfield.svg" alt="Pub"></a>
   <a href="https://opensource.org/licenses/MIT"><img src="https://img.shields.io/badge/license-MIT-blue.svg" alt="License: MIT"></a>
   <a href="https://github.com/K1yoshiSho/rtf_textfield"><img src="https://hits.dwyl.com/K1yoshiSho/rtf_textfield.svg?style=flat" alt="Repository views"></a>
   <a href="https://github.com/K1yoshiSho/rtf_textfield"><img src="https://img.shields.io/github/stars/K1yoshiSho/rtf_textfield?style=social" alt="Pub"></a>
@@ -30,10 +30,8 @@ Included RTFTextFieldController for customize text, hint and label TextSpan 😊
 
 ## 📌 Features
 
-- ✅ Customizable hint
-- ✅ Customizable label
-- ✅ Data serialization *(Store and fetch styled text in JSON format)*
-- ✅ Customizable text features with `RTFTextFieldController` *(change color, style, size, wight, etc.)*
+- ✅ Simple open/close drawer with swipe to right
+- ✅ Open/close drawer using SlidableDrawerController
 
 ## 📌 Getting Started
 Follow these steps to use this package
@@ -42,25 +40,21 @@ Follow these steps to use this package
 
 ```yaml
 dependencies:
-  rtf_textfield: ^1.0.1
+  slidable_drawer: ^1.0.6
 ```
 
 ### Add import package
 
 ```dart
-import 'package:rtf_textfield/rtf_textfield.dart';
+import 'package:slidable_drawer/slidable_drawer.dart';
 ```
 
 ### Easy to use
-Simple example of use `RTFTextField`<br>
+Simple example of use `SlidableDrawer`<br>
 Put this code in your project at an screen and learn how it works 😊
 
 <div style="display: flex; flex-direction: row; align-items: flex-start; justify-content: flex-start;">
-  <img src="https://github.com/K1yoshiSho/rtf_textfield/blob/main/assets/images/screenshot1.png?raw=true" 
-  alt="Screenshot" width="250" style="margin-right: 10px;"/>
-    <img src="https://github.com/K1yoshiSho/rtf_textfield/blob/main/assets/images/screenshot2.png?raw=true" 
-  alt="Screenshot" width="250" style="margin-right: 10px;"/>
-      <img src="https://github.com/K1yoshiSho/rtf_textfield/blob/main/assets/images/screenshot3.png?raw=true" 
+  <video src="https://github.com/K1yoshiSho/slidable_drawer/blob/main/assets/videos/slidable_video.mov?raw=true" 
   alt="Screenshot" width="250" style="margin-right: 10px;"/>
 </div>
 
@@ -68,48 +62,89 @@ Put this code in your project at an screen and learn how it works 😊
 
 Widget part:
 ```dart
-RTFTextField(
-   onTapOutside: (event) {
-      FocusManager.instance.primaryFocus?.unfocus();
-   },
-   decoration: const RichInputDecoration(
-      border: OutlineInputBorder(
-      borderRadius: BorderRadius.all(Radius.circular(16)),
-   ),
-      enabledBorder: OutlineInputBorder(
-         borderSide: BorderSide(
-            color: Colors.grey,
-         ),
-         borderRadius: BorderRadius.all(Radius.circular(16)),
-      ),
-      labelTextSpan: TextSpan(
-         text: 'Enter your name',
-         children: [
-            TextSpan(
-               text: ' *',
-               style: TextStyle(
-                  color: Colors.red,
-               ),
+import 'package:flutter/material.dart';
+import 'package:slidable_drawer/slidable_drawer.dart';
+
+void main() {
+  runApp(MaterialApp(
+    theme: ThemeData.dark(),
+    home: const MyApp(),
+  ));
+}
+
+class MyApp extends StatefulWidget {
+  const MyApp({super.key});
+
+  // Create and return the state associated with MyApp.
+  @override
+  State<MyApp> createState() => _MyAppState();
+}
+
+// The state of the MyApp widget.
+class _MyAppState extends State<MyApp> {
+  final SlidableDrawerController _slidableDrawer = SlidableDrawerController();
+
+  // initState is called when this object is inserted into the tree.
+  @override
+  void initState() {
+    super.initState();
+  }
+
+  // This method builds the widget that this state represents.
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      body: SlidableDrawer(
+        drawerBody: _SlidableDraweBody(
+          controller: _slidableDrawer,
+        ),
+        innerDrawerController: _slidableDrawer,
+        child: SizedBox(
+          height: MediaQuery.of(context).size.height,
+          child: Center(
+              child: TextButton(
+            style: ButtonStyle(
+              backgroundColor: MaterialStateProperty.all(Colors.blue),
             ),
-         ],
+            onPressed: () {
+              _slidableDrawer.animateToOpen();
+            },
+            child: const Text(
+              'Open Drawer',
+              style: TextStyle(color: Colors.white),
+            ),
+          )),
+        ),
       ),
-      hintTextSpan: TextSpan(
-         text: 'Yelaman',
-         ),
+    );
+  }
+}
+
+class _SlidableDraweBody extends StatelessWidget {
+  final SlidableDrawerController controller;
+
+  const _SlidableDraweBody({required this.controller});
+
+  // This method builds the widget that this stateless widget represents.
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      color: const Color.fromARGB(255, 66, 66, 66), // can be any color
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: <Widget>[
+          TextButton(
+            onPressed: () {
+              controller.animateToClose();
+            },
+            child: const Text('Close'),
+          ),
+        ],
       ),
-   controller: controller,
-),
+    );
+  }
+}
 ```
-
-Change text weight using `RTFTextFieldController`:
-
-```dart
-controller.toggleBold();
-```
-
-
-### 📌 Examples
-You can check more examples of using this package [here](example/lib)
 
 <br>
 <div align="center" >

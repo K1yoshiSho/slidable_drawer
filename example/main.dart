@@ -1,11 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:slidable_drawer/inner_drawer.dart';
+import 'package:slidable_drawer/slidable_drawer.dart';
 
 void main() {
   runApp(MaterialApp(
-    theme: ThemeData.dark(
-      useMaterial3: true,
-    ),
+    theme: ThemeData.dark(),
     home: const MyApp(),
   ));
 }
@@ -20,7 +18,7 @@ class MyApp extends StatefulWidget {
 
 // The state of the MyApp widget.
 class _MyAppState extends State<MyApp> {
-  InnerDrawerController innerDrawerController = InnerDrawerController();
+  final SlidableDrawerController _slidableDrawer = SlidableDrawerController();
 
   // initState is called when this object is inserted into the tree.
   @override
@@ -32,11 +30,11 @@ class _MyAppState extends State<MyApp> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: InnerDrawer(
-        drawerBody: CustomDrawer(
-          controller: innerDrawerController,
+      body: SlidableDrawer(
+        drawerBody: _SlidableDraweBody(
+          controller: _slidableDrawer,
         ),
-        innerDrawerController: innerDrawerController,
+        innerDrawerController: _slidableDrawer,
         child: SizedBox(
           height: MediaQuery.of(context).size.height,
           child: Center(
@@ -45,7 +43,7 @@ class _MyAppState extends State<MyApp> {
               backgroundColor: MaterialStateProperty.all(Colors.blue),
             ),
             onPressed: () {
-              innerDrawerController.animateToOpen();
+              _slidableDrawer.animateToOpen();
             },
             child: const Text(
               'Open Drawer',
@@ -58,10 +56,10 @@ class _MyAppState extends State<MyApp> {
   }
 }
 
-class CustomDrawer extends StatelessWidget {
-  final InnerDrawerController controller;
+class _SlidableDraweBody extends StatelessWidget {
+  final SlidableDrawerController controller;
 
-  const CustomDrawer({super.key, required this.controller});
+  const _SlidableDraweBody({required this.controller});
 
   // This method builds the widget that this stateless widget represents.
   @override
