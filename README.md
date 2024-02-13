@@ -54,8 +54,8 @@ Simple example of use `SlidableDrawer`<br>
 Put this code in your project at an screen and learn how it works 😊
 
 <div style="display: flex; flex-direction: row; align-items: flex-start; justify-content: flex-start;">
-  <video src="https://github.com/K1yoshiSho/slidable_drawer/blob/main/assets/videos/slidable_video.mov?raw=true" controls
-  alt="Screenshot" width="250" style="margin-right: 10px;"/>
+  <img src="https://github.com/K1yoshiSho/slidable_drawer/blob/main/assets/videos/slidable.gif?raw=true"
+  alt="Slidable package's example" width="250" style="margin-right: 10px;"/>
 </div>
 
 &nbsp;
