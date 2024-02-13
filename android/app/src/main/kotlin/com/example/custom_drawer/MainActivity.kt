@@ -1,4 +1,4 @@
-package com.example.custom_inner_drawer
+package com.example.slidable_drawer
 
 import io.flutter.embedding.android.FlutterActivity
 
