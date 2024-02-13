@@ -1,7 +1,7 @@
 <div align="center">
 <p align="center">
-    <a href="https://github.com/K1yoshiSho/inner_drawer" align="center">
-        <img src="https://github.com/K1yoshiSho/inner_drawer/blob/main/assets/images/slidable_drawer.png?raw=true" width="400px">
+    <a href="https://github.com/K1yoshiSho/slidable_drawer" align="center">
+        <img src="https://github.com/K1yoshiSho/slidable_drawer/blob/main/assets/images/slidable_drawer.png?raw=true" width="400px">
     </a>
 </p>
 </div>
@@ -11,19 +11,19 @@
 <p align="center">
 Included SlidableDrawerController for animated open/close drawer 😊
    <br>
-   <span style="font-size: 0.9em"> Show some ❤️ and <a href="https://github.com/K1yoshiSho/inner_drawer.git">star the repo</a> to support the project! </span>
+   <span style="font-size: 0.9em"> Show some ❤️ and <a href="https://github.com/K1yoshiSho/slidable_drawer.git">star the repo</a> to support the project! </span>
 </p>
 
 <p align="center">
-  <a href="https://pub.dev/packages/inner_drawer"><img src="https://img.shields.io/pub/v/rtf_textfield.svg" alt="Pub"></a>
+  <a href="https://pub.dev/packages/slidable_drawer"><img src="https://img.shields.io/pub/v/slidable_drawer.svg" alt="Pub"></a>
   <a href="https://opensource.org/licenses/MIT"><img src="https://img.shields.io/badge/license-MIT-blue.svg" alt="License: MIT"></a>
-  <a href="https://github.com/K1yoshiSho/rtf_textfield"><img src="https://hits.dwyl.com/K1yoshiSho/rtf_textfield.svg?style=flat" alt="Repository views"></a>
-  <a href="https://github.com/K1yoshiSho/rtf_textfield"><img src="https://img.shields.io/github/stars/K1yoshiSho/rtf_textfield?style=social" alt="Pub"></a>
+  <a href="https://github.com/K1yoshiSho/slidable_drawer"><img src="https://hits.dwyl.com/K1yoshiSho/slidable_drawer.svg?style=flat" alt="Repository views"></a>
+  <a href="https://github.com/K1yoshiSho/slidable_drawer"><img src="https://img.shields.io/github/stars/K1yoshiSho/slidable_drawer?style=social" alt="Pub"></a>
 </p>
 <p align="center">
-  <a href="https://pub.dev/packages/rtf_textfield/score"><img src="https://img.shields.io/pub/likes/rtf_textfield?logo=flutter" alt="Pub likes"></a>
-  <a href="https://pub.dev/packages/rtf_textfield/score"><img src="https://img.shields.io/pub/popularity/rtf_textfield?logo=flutter" alt="Pub popularity"></a>
-  <a href="https://pub.dev/packages/rtf_textfield/score"><img src="https://img.shields.io/pub/points/rtf_textfield?logo=flutter" alt="Pub points"></a>
+  <a href="https://pub.dev/packages/slidable_drawer/score"><img src="https://img.shields.io/pub/likes/slidable_drawer?logo=flutter" alt="Pub likes"></a>
+  <a href="https://pub.dev/packages/slidable_drawer/score"><img src="https://img.shields.io/pub/popularity/slidable_drawer?logo=flutter" alt="Pub popularity"></a>
+  <a href="https://pub.dev/packages/slidable_drawer/score"><img src="https://img.shields.io/pub/points/slidable_drawer?logo=flutter" alt="Pub points"></a>
 </p>
 
 <br>
@@ -54,7 +54,7 @@ Simple example of use `SlidableDrawer`<br>
 Put this code in your project at an screen and learn how it works 😊
 
 <div style="display: flex; flex-direction: row; align-items: flex-start; justify-content: flex-start;">
-  <video src="https://github.com/K1yoshiSho/slidable_drawer/blob/main/assets/videos/slidable_video.mov?raw=true" 
+  <video src="https://github.com/K1yoshiSho/slidable_drawer/blob/main/assets/videos/slidable_video.mov?raw=true" controls
   alt="Screenshot" width="250" style="margin-right: 10px;"/>
 </div>
 
@@ -149,8 +149,8 @@ class _SlidableDraweBody extends StatelessWidget {
 <br>
 <div align="center" >
   <p>Thanks to all contributors of this package</p>
-  <a href="https://github.com/K1yoshiSho/rtf_textfield/graphs/contributors">
-    <img src="https://contrib.rocks/image?repo=K1yoshiSho/rtf_textfield" />
+  <a href="https://github.com/K1yoshiSho/slidable_drawer/graphs/contributors">
+    <img src="https://contrib.rocks/image?repo=K1yoshiSho/slidable_drawer" />
   </a>
 </div>
 <br>
