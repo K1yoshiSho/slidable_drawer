@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:slidable_drawer/slidable_drawer.dart';
+import 'package:slidable_drawer/src/utils/swipe_direction.dart';
 
 void main() {
   runApp(MaterialApp(
@@ -31,6 +32,7 @@ class _MyAppState extends State<MyApp> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: SlidableDrawer(
+        swipeDirection: SwipeDirection.rightToLeft,
         drawerBody: _SlidableDraweBody(
           controller: _slidableDrawer,
         ),

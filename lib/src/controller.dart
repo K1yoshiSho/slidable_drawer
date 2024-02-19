@@ -1,12 +1,10 @@
 part of '../slidable_drawer.dart';
 
 /// This class is used to control the SlidableDrawer.
-class SlidableDrawerController {
-  late SlidableDrawerState _innerDrawerState;
-
+final class SlidableDrawerController extends ChangeNotifier {
+  late BaseSlidableDrawerState _innerDrawerState;
   // This method is used to attach the SlidableDrawerState to the SlidableDrawerController.
-  // ignore: library_private_types_in_public_api
-  void attach(SlidableDrawerState innerDrawerState) {
+  void attach(BaseSlidableDrawerState innerDrawerState) {
     _innerDrawerState = innerDrawerState;
   }
 
@@ -15,7 +13,7 @@ class SlidableDrawerController {
     _innerDrawerState.animateToOpen();
   }
 
-  // This method is used to animate the SlidableDrawer to close.
+// This method is used to animate the SlidableDrawer to close.
   void animateToClose() {
     _innerDrawerState.animateToClose();
   }

@@ -1,7 +1,7 @@
 name: slidable_drawer
 description: This package was created to implement a Custom Drawer that could be opened with a simple swipe.
 homepage: https://github.com/K1yoshiSho/inner_drawer.git
-version: 1.0.7
+version: 1.0.8
 
 environment:
   sdk: '>=3.2.5 <4.0.0'
@@ -10,6 +10,8 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
+  
+  provider: ^6.1.1
 
 dev_dependencies:
   flutter_test:
